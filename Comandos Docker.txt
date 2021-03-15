@@ -1,5 +1,7 @@
 https://docs.docker.com/engine/reference/commandline/docker/
 
+Dar preferência pelo Linux.
+
 # Docker
 
 * Run
@@ -32,10 +34,17 @@ https://docs.docker.com/engine/reference/commandline/docker/
  docker container run --help
 
 * Listar containers que estão rodando:
-    docker container ps
+    'docker container ps' ou 'docker container ls' de um forma geral trocar ps por ls ai dar no mesmo.
 
 * Listar containers que estão rodando e já executados:
     docker container ps -a
+
+    Para listar apenas o ID colocar o atributo 'q', exemplo:
+    
+    docker container ps -aq
+    docker container ps -q
+
+
 
 * Cirando um container com nome E retulizando:
 
@@ -89,5 +98,8 @@ https://docs.docker.com/engine/reference/commandline/docker/
 
 * Rodar um container e retirá-lo o histórico 
     docker container run --rm debian bash --version
+
+* Parar um container
+    'docker stop NomeMeuContainer' ou 'docker stop IdMeuContainer'
 
 
