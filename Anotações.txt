@@ -1,0 +1,19 @@
+Imagens e camadas (layers)
+Uma imagem Docker é criada em várias camadas e cada camada representa uma instrução do seu Dockerfile.
+
+Vejamos o Dockerfile de exemplo abaixo:
+=================================
+
+FROM alpine:3.7
+
+ADD /etc/motd /root/meu-motd
+
+RUN mkdir -p /root/arquivos/leiame
+
+CMD cat /root/meu-motd
+
+=================================
+Cada uma dessas linhas acima representam uma camada (layer). O importante aqui é entender que cada um desses comandos gera uma camada de diferença em relação a outra, ou seja, quando o comando FROM foi executado, ele gerou uma camada (layer) X. O comando ADD gerou uma outra camada com seus arquivos gerando uma camada Y e assim respectivamente para os outros comandos.
+
+Essas camandas (layers) são empilhadas uma em cima ds outras e quando você inicia um novo container você simplesmente adiciona uma nova layer de gravação em cima de todas as outras que já existiam. Se por algum motivo você entrar neste container e modificar qualquer arquivo lá dentro, como provavelmente já fizemos em algum exercício anterior, todas as modificações ficam nesta nova camada que você criou ao executar seu container.
+

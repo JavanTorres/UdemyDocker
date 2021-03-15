@@ -1,0 +1,26 @@
+# Docker
+
+* Run
+    docker run hello-world
+
+    O comando run é a nossa porta de entrada no Docker, agrupando diversas funcionalidades básicas,
+    como:
+    • Download automático das imagens não encontradas: docker image pull
+    • Criação do container: docker container create
+    • Execução do container: docker container start
+    • Uso do modo interativo: docker container exec
+
+## Container
+
+* Listar containers que estão rodando:
+    docker container ps
+
+* Listar containers que estão rodando e já executados:
+    docker container ps -a
+
+##
+
+* Rodar um container e retirá-lo o histórico 
+    docker container run --rm debian bash --version
+
+
