@@ -1,3 +1,5 @@
+https://docs.docker.com/engine/reference/commandline/docker/
+
 # Docker
 
 * Run
@@ -10,13 +12,78 @@
     • Execução do container: docker container start
     • Uso do modo interativo: docker container exec
 
+> Run SEMPRE CRIA NOVOS containers
+
+    docker container run -it debian bash
+
+    O 'i' é para rodar em modo interativo e o 't' é para ter acesso ao terminal.
+
+    Dentro do terminal do container rodando o debian rodar:
+
+    'touch curso-docker.txt'
+
+    Depois disso basta rodar um comando  'ls' e veremos que o arquivo foi criado dentro do container.
+
+    Agora damos 'exit' do container e rodamos novamente 'docker container run -it debian bash' e damos o comando 'ls' novamente, veremos que o arquivo não existe mais.
+
+
 ## Container
+
+ docker container run --help
 
 * Listar containers que estão rodando:
     docker container ps
 
 * Listar containers que estão rodando e já executados:
     docker container ps -a
+
+* Cirando um container com nome E retulizando:
+
+    docker container run --name mydebian -it debian bash
+    exit
+
+    docker container ls -a
+
+    docker container start -ai mydebian
+    O 'a' pe de attach o 'i' é do modo interativo fica equivalente a '-it'
+
+    touch curso-docker.txt
+    ls
+    exit
+
+    docker container start -ai mydebian
+    ls
+
+    Ai veremos que o TXT está no container.
+
+    exit
+
+* Parar um container:
+    docker container stop NomeDoContainer
+
+### Mapeamentos
+
+* Mapear portas dos containers:
+    
+    docker container run -p 8080:80 nginx
+    A primeira porta '8080' é que será exposta a '80' é a que será usada dentro do container.
+
+    Agora basta acessar em um browser 'http://localhost:8080/', olha a mágica.
+
+    Abra um nova aba no terminal e rode:
+
+     docker container ps
+     E veremos o container con o servidor nginx rodando.
+
+     Agora rodamos um comando para parar o container, se não estiver usando windows basta usar CTRL+C.
+
+     docker container stop NomeDoMeuContainer
+
+     CTRL+C para parar não funciona no windows. Para vermos que o conteiner parou: 'docker container ps'.
+
+* Mapear diretórios para o container:
+    Será usado o comando PWD para visualizar a pasta em que se está, esse comando não funciona em todos os terminais, principalmente o CMD padrão do Windows.
+
 
 ##
 
