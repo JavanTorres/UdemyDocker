@@ -46,7 +46,7 @@ Dar preferência pelo Linux.
 
 
 
-* Cirando um container com nome E retulizando:
+* Criando um container com nome E reutilizando:
 
     docker container run --name mydebian -it debian bash
     exit
@@ -90,8 +90,14 @@ Dar preferência pelo Linux.
 
      CTRL+C para parar não funciona no windows. Para vermos que o conteiner parou: 'docker container ps'.
 
-* Mapear diretórios para o container:
+* Mapear diretórios(volumes) '-v' para o container:
     Será usado o comando PWD para visualizar a pasta em que se está, esse comando não funciona em todos os terminais, principalmente o CMD padrão do Windows.
+
+    Vamos monstar um exemplo criado pastas HTML no projeto e depois acessando ela pelo container. Rodar o comando abaixo na raiz deste projeto:
+
+    'docker container run --name mynginx -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html nginx'
+
+    Chamar  http://localhost:8080/
 
 
 ##
@@ -103,3 +109,4 @@ Dar preferência pelo Linux.
     'docker stop NomeMeuContainer' ou 'docker stop IdMeuContainer'
 
 
+--name
