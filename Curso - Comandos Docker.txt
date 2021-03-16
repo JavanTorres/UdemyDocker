@@ -4,6 +4,8 @@ Dar preferência pelo Linux.
 
 # Docker
 
+<<<<<<<<<<<<<<<<<<<<<<<< Seção 4: Uso Básico do Docker >>>>>>>>>>>>>>>>>>>>>>>>
+
 * Run
     docker run hello-world
 
@@ -99,6 +101,11 @@ Dar preferência pelo Linux.
 
     Chamar  http://localhost:8080/
 
+* Rodar container em background (inserir '-d' depois do 'run'), no caso da utilização do comando 'start' para rodar um container já existente ele já roda em background caso não mande ele rodar em modo interativo.
+
+    docker container run -d --name mynginx -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html nginx
+
+    
 
 ##
 
@@ -109,4 +116,20 @@ Dar preferência pelo Linux.
     'docker stop NomeMeuContainer' ou 'docker stop IdMeuContainer'
 
 
---name
+* Gerenciar o container em background (START, STOP, RESTART).
+
+    docker container run -d --name mynginx -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html nginx
+
+    docker container start mynginx
+
+    docker container restart mynginx
+
+    docker container stop mynginx
+
+*  Manipulação de containers em modo daemon (LOGS, INSPECT)
+    docker container logs mynginx
+
+    docker container inspect mynginx
+
+* Saber o sistema que está sendo excutado dentro do container
+    docker container exec mynginx uname -or
