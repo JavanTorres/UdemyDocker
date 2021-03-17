@@ -1,0 +1,16 @@
+https://docs.docker.com/engine/reference/commandline/docker/
+
+
+docker container --help
+
+docker image --help
+
+docker volmue --help
+
+* Baixando uma imagem do Redis em sua última versão.
+    docker image pull redis:latest
+
+    Espeficicando 'REPOSITORY:TAG' > 'redis:latest'.
+
+* Dando inspect em uma imagem
+    docker image inspect redis:latest
