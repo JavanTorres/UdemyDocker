@@ -1,0 +1,13 @@
+Na raiz da pasta 'build-com-arg' (verificar como foi feito o Dockerfile) que está dentro deste projeto rodar:
+
+    'docker image build -t ex-build-arg .'
+
+    'docker image ls'
+
+    'docker container run ex-build-arg bash -c 'echo $S3_BUCKET''
+
+Agora gerar/atualizar imagem passando a variável de sistema S3_BUCKET.
+
+    'docker image build --build-arg S3_BUCKET=myapp -t ex-build-arg .'
+
+    'docker container run ex-build-arg bash -c 'echo $S3_BUCKET''

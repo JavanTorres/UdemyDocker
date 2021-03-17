@@ -1,0 +1,3 @@
+Em cima da imagem criada pelo arquivo 'Curso S5.38.1 Uso das instruções de preparação.':
+
+docker image inspect --format="{{index .Config.Labels \"maintainer\"}}" ex-build-arg

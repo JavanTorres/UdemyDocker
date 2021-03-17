@@ -1,6 +1,6 @@
 https://phoenixnap.com/kb/remove-docker-images-containers-networks-volumes
 
-Usar Linux.
+# Containers
 Lembrando que 'ps' poderia ser substituído por 'ls'.
 
 * Primeiro é preciso parar todos os containers que estão rodando:
@@ -9,4 +9,8 @@ Lembrando que 'ps' poderia ser substituído por 'ls'.
 * Agora basta remover os containers que estão parados:
     docker container rm $(docker container ps -aq)
 
+# Image
+
+
+ docker image rm $(docker image ls -aq)
 
