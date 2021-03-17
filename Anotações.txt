@@ -17,3 +17,7 @@ Cada uma dessas linhas acima representam uma camada (layer). O importante aqui �
 
 Essas camandas (layers) são empilhadas uma em cima ds outras e quando você inicia um novo container você simplesmente adiciona uma nova layer de gravação em cima de todas as outras que já existiam. Se por algum motivo você entrar neste container e modificar qualquer arquivo lá dentro, como provavelmente já fizemos em algum exercício anterior, todas as modificações ficam nesta nova camada que você criou ao executar seu container.
 
+================================
+
+ 'Docker Hub (SAS - produto na nuvem) × Docker Registry (serviço server-side)' Seria como 'Git Hub (plataforma) x Git (software)'.
+

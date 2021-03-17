@@ -14,3 +14,43 @@ docker volmue --help
 
 * Dando inspect em uma imagem
     docker image inspect redis:latest
+
+* Criando uma imagem clone baseada na imagem origem em sua tag com um nome REPOSITORY diferente chamado 'cod3r-redis', como não foi especificado tag para 'cod3r-redis' a imagem será criada como 'latest', mas poderia ser 1.0 por exemplo.
+    docker image tag redis:latest cod3r-redis
+
+    Ao rodar 'docker image ls' note que a tag/imagem criada terá o mesmo "hash"/'IMAGE ID' do REPOSITORY redis TAG latest (redis:latest), cod3r-redis é o nome do REPOSITORY da TAG que será criada, como não foi especificado tag name o nome será 'latest'.
+
+    Um exemplo mais detalhado:
+
+    docker image pull redis:6.0.12
+    docker image tag redis:6.0.12 javan-redis:1.0.0
+    docker image ls
+
+* Removendo imagens de tags específicas.
+    docker image rm redis:latest cod3r-redis
+
+
+No geral as tags são ponteiros para hashs de imagens específicas de um repositório.
+
+
+* Baixar imagem
+    docker image pull debian
+
+* Listar imagens
+    docker image ls
+
+* Remover imagem
+    docker image rm debian
+
+* Inspecionar uma imagem
+    docker image inspect debian
+
+* "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE"
+    docker image tag
+
+* Comando para construir uma imagem a patir de um descritor, pode ser um arquivo 'Dockerfile' ou até meso uma URL.
+    docker image build
+
+* Publicar uma imagem em um registry local ou na nuvem como o Docker Hub por exemplo
+    docker image push
+
