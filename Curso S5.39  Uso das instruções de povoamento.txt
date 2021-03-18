@@ -1,0 +1,5 @@
+Na raiz da pasta 'build-com-copy' (verificar como foi feito o Dockerfile) que está dentro deste projeto rodar:
+
+'docker image build -t ex-build-copy .'
+
+'docker container run -p 8080:80 ex-build-copy'
