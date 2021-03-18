@@ -10,7 +10,7 @@ Na raiz da pasta 'build-com-copy' (verificar como foi feito o Dockerfile) que es
 Chamar 'http://localhost:8080/'
 
 
-Agora vamos criar e rodar um container debian recuperar e exibir o log gerado no servidor python.
+Agora vamos criar e rodar um container debian recuperar e exibir o log gerado no servidor python. O container precisar estar rodando.
 
 'docker container run -it --volumes-from=python-server debian cat /log/http-server.log'
 
