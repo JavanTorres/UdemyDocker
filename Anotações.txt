@@ -21,3 +21,5 @@ Essas camandas (layers) são empilhadas uma em cima ds outras e quando você ini
 
  'Docker Hub (SAS - produto na nuvem) × Docker Registry (serviço server-side)' Seria como 'Git Hub (plataforma) x Git (software)'.
 
+ O docker file mais detalhato é o do exercício "Curso S5.40 Uso das instruções para execução do container.txt".
+

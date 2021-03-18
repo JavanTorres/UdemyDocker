@@ -1,0 +1,19 @@
+Exemplo em que será criado um servidor Python e teremos compartilhamento de arquivos entre o container e nosso projeto, 
+além disso será criado um outro container que irá acessar os logs do servidor python.
+
+Na raiz da pasta 'build-com-copy' (verificar como foi feito o Dockerfile) que está dentro deste projeto rodar:
+
+'docker image build -t ex-build-dev .'
+
+'docker container run -it -v $(pwd):/app -p 8080:8000 --name python-server ex-build-dev'
+
+Chamar 'http://localhost:8080/'
+
+
+Agora vamos criar e rodar um container debian recuperar e exibir o log gerado no servidor python.
+
+'docker container run -it --volumes-from=python-server debian cat /log/http-server.log'
+
+Obs:
+    O python-server é o nome gerado automáticamente ao rodar o comando run sem especificar qual seria o nome do container criado.
+    O caminho '/log/http-server.log' que é onde os logs são gravados dentro do servidor python foi definido no arquivo 'run.py'.
