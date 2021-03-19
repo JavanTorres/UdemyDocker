@@ -9,11 +9,10 @@ Lembrando que 'ps' poderia ser substituído por 'ls'.
 * Agora basta remover os containers que estão parados:
     docker container rm $(docker container ps -aq)
 
-====> 
-docker container stop $(docker container ps -q) && docker container rm $(docker container ps -aq)
-
 # Image
 
 
- docker image rm $(docker image ls -aq)
+ docker image rm $(docker image ls -aq) -f
+
+ docker rmi $(docker images -q) -f
 
