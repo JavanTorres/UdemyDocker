@@ -1,1 +1,20 @@
 Docker usa por padrão redes no modelo Bridge.
+
+docker network ls
+
+Na instalação padrão do docker eles configura  'bridge', 'host' e 'none' por padrão.
+
+
+Rede None:
+
+    Primeiro vamos criar um container padrão sem formar rede nenhuma:
+
+    'docker container run --rm alpine ash -c "ifconfig"'
+
+    O '--rm' dentro do run é para apagar o container após terminada a execução.
+    Ash é um bash mais live disponibilizado do alpine.
+    O '-c "ifconfig"' é para chamar o comando ifconfig.
+
+    Rodar container selecionando rede Node:
+
+    'docker container run --rm --net none alpine ash -c "ifconfig"'
