@@ -1,0 +1,1 @@
+Docker usa por padrão redes no modelo Bridge.
