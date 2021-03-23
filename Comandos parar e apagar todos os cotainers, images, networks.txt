@@ -16,3 +16,11 @@ Lembrando que 'ps' poderia ser substituído por 'ls'.
 
  docker rmi $(docker images -q) -f
 
+
+# networks
+
+docker network rm my-network
+
+Remove all unused network
+
+docker network prune

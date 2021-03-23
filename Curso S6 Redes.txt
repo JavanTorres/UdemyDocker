@@ -1,9 +1,11 @@
 Docker usa por padrão redes no modelo Bridge.
 
+Na instalação padrão do docker eles configura redes 'bridge', 'host' e 'none' por padrão.
+Basta rodar:
+
 docker network ls
 
-Na instalação padrão do docker eles configura  'bridge', 'host' e 'none' por padrão.
-
+E assim visualizar estas redes.
 
 Rede None:
 
@@ -18,3 +20,93 @@ Rede None:
     Rodar container selecionando rede Node:
 
     'docker container run --rm --net none alpine ash -c "ifconfig"'
+
+Rede Bridge:
+
+    docker network ls
+
+    docker network inspect bridge
+
+    --
+
+    docker container run -d --name container1 alpine sleep 8h
+
+    A instrução "sleep 8h" diz que após 8 horas o processo deve morrer.
+
+    docker container exec -it container1 ash -c "ifconfig"
+    172.170.02
+
+    --
+
+    docker container run -d --name container2 alpine sleep 8h
+
+    docker container exec -it container2 ash -c "ifconfig"
+    172.170.03
+
+    -- 
+
+    docker container exec -it container1 ping 172.17.0.03
+    docker container exec -it container1 ping www.google.com
+
+
+Agora vamos criar uma nova rede, mostrar qual o nobo endereço, por padrão um container que está em uma rede não tem acesso a outra rede.
+E depois vamos fazer com que continer de redes diferentes de comuniquem.
+
+    Criando uma nova rede do tipo bridge.
+
+    docker network create --driver bridge rede_nova
+
+    docker network ls
+
+    docker network inspect rede_nova
+
+    Resultado: "Subnet": "172.19.0.0/16", o IP pode variar se já existirem outras redes criadas.
+
+    Criando um container na rede nova:
+
+    docker container run -d --name container3 --net rede_nova alpine sleep 8h
+
+    docker container exec -it container3 ash -c "ifconfig"
+
+    Relembrando o ip do container1:
+
+    docker container inspect container1
+
+    Após rodar o comando encontramos o IP: "IPAddress": "172.17.0.2", antes o container estava parado e sem IPAddress, matei o container e recriei com um sleep bem mais alto.
+
+    docker container exec -it container3 ping 172.17.0.02
+
+    Veremos que não vamos conseguir pingar pois são redes distintas.
+    Agora vamos configurar para o container3 conseguir visulizar a rede "bridge", neste caso bridge é o NOME da rede padrão criada na instalção com docker com nome e tipo "bridge".
+
+    docker network connect bridge container3
+
+    Ao rodar : 'docker container exec -it container3 ash -c "ifconfig"'. Veremos que agora o o container3 tem uma interface de rede eth1 além da padrão eht1, eht1 pertence a rede padrão na qual acabamos de conectar.
+
+    Agora vamos tentar pingar novamente:
+
+    docker container exec -it container3 ping 172.17.0.02
+
+    Agora vamos desconectar o container3:
+
+    docker network disconnect bridge container3
+
+    Tetando pingar novamente com erro:
+
+    docker container exec -it container3 ping 172.17.0.02
+
+    Ao rodar novamente : 'docker container exec -it container3 ash -c "ifconfig"'. Veremos que eth1 sumiu.
+
+Rede HOST:
+
+    Neste caso como o pŕoprio nome já diz as interfaces de rede da máquina hospedeira são utilizadas diretamente, sem o isolamento e segurança do modo bridge.
+
+    docker container run -d --name container4 --net host alpine sleep 8h
+
+    Ao rodar 'ifconfig' na máquina local veremos todas as interfaces de rede de nossa máquina.
+    
+    Após rodar:
+
+    docker container exec -it container4 ash -c "ifconfig"
+
+    Veremos que as interfaces de rede usadas são as mesmas.
