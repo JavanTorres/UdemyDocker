@@ -1,5 +1,6 @@
 version: "3"
 volumes:
+  # Como não tem nada referencia a pasta raiz.
   dados:
 services:
   db:
@@ -8,4 +9,8 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       # Volumes dos dados
-      -
+      - dados:/var/lib/postgresql/data
+      # Scripts
+      - ./scripts:/scripts
+      # Este padrão de inicilização está na documentação oficial do postgres
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql

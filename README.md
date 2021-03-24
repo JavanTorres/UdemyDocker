@@ -3,7 +3,7 @@ Repositório criado para abrigar conhecimentos obtidos no curso "Docker: Ferrame
 
 Repositório do Curso: https://github.com/cod3rcursos/curso-docker
 
-
+É muito importante rodar rotineiramente 'docker volume prune' para liberar espaço em disco apagando volumes que não são mais utilizados.
 
 
 Obter Shell no container Docker em execução:

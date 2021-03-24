@@ -27,4 +27,23 @@ Rodar 'docker-compose down' para parar o(s) serviço(s). Ele vai remover o db_1 
 
 # 54. Volumes
 
+Vamos criar a pasta scripts e nela os arquivos 'check.sql' e 'init.sql'.
+Agora vamos mapear os volumes no compose.
 
+Rodar 'docker-compose ps' para verificar se existe um serviço rodando.
+Se nada estiver rodando 'docker-compose up -d'.
+Caso já esteja rodando rodar 'docker-compose down' e rodar novamente 'd'ocker-compose up -d'.  É preciso estudar a politica de restart e ver se funcion a para pegar novas configurações no compose.
+
+Rodar 'docker-compose exec db psql -U postgres -f /scripts/check.sql' para ver se o script de inicialização funcionoue o bd "email_sender" foi criado com sucesso.
+Tive problemas ao criar o BD, pois quando subi o serviço o init do BD não estava configurado de forma correta, foi preciso rodar 'ocker-compose down'-v', no caso "-v":
+
+-v, --volumes           Remove named volumes declared in the `volumes`
+                            section of the Compose file and anonymous volumes
+                            attached to containers.
+
+
+
+https://youtu.be/StQYXkFgeeA?t=481
+
+
+https://spin.atomicobject.com/2019/07/11/docker-volumes-explained/
