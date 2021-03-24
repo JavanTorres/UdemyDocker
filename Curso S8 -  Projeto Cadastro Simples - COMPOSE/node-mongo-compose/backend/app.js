@@ -9,7 +9,8 @@ const cors = require('cors')
 try {
     // Database
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://db/mydb')
+// db_mongo é no nome do service/container
+mongoose.connect('mongodb://db_mongo/mydb')
 
 // Middlewares
 server.use(bodyParser.urlencoded({extended:true}))

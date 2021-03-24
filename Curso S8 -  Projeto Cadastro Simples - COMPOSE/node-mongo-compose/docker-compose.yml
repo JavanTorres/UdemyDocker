@@ -1,6 +1,6 @@
 version: '3'
 services:
-  db:
+  db_mongo:
     image: mongo:3.4
   backend:
     image: node:8.1
