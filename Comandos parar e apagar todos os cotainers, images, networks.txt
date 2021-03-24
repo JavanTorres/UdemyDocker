@@ -21,6 +21,10 @@ Lembrando que 'ps' poderia ser substituído por 'ls'.
 
 docker network rm my-network
 
-Remove all unused network
+Remover conexões não utilizadas:
 
 docker network prune
+
+Remover volumes não utilizados:
+
+docker volume prune
