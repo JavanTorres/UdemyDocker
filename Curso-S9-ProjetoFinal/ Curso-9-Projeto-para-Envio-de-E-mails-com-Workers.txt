@@ -25,3 +25,6 @@ Resultado:
 Rodar 'docker-compose down' para parar o(s) serviço(s). Ele vai remover o db_1 e a rede criada pra esse compose.
 
 
+# 54. Volumes
+
+
