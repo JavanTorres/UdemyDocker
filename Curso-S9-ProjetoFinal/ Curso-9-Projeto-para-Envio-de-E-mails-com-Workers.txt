@@ -1,0 +1,27 @@
+# 53. Banco de dados
+
+Criar uo banco de dados, criar uma pasta chamda 'email-worker-compose' e dentro dela um docker-compose.yml e após isso na raiz da pasta rodar 
+'docker-compose up -d' para subir em background e depois rodar 'docker-compose ps' para ver o processo rodando.
+
+Rodar para entrar no processo e listar os bancos de dados:
+
+'docker-compose exec db psql -U postgres -c '\l''
+
+O '-U' (maiúsculo) é para dizer o usuário e o '-c' o comando, nol ugar de '\l' poseria ser um select por exemplo.
+
+Resultado:
+
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(3 rows)
+
+
+
+Rodar 'docker-compose down' para parar o(s) serviço(s). Ele vai remover o db_1 e a rede criada pra esse compose.
+
+

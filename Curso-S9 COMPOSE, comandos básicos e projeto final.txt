@@ -1,0 +1,10 @@
+Para o projeto olhar a pasta: Curso-S9-ProjetoFinal.
+
+Comandos:
+
+docker-compose up -d
+docker-compose up
+
+docker-compose ps
+
+docker-compose down
