@@ -77,3 +77,8 @@ You are now connected to database "email_sender" as user "postgres".
 # 56. Filas (app).
    Criar a pasta app e os arquivos app.sh e sender.py.
    Voltar ao compose.
+
+   docker-compose down
+   docker-compose up
+
+   https://github.com/taigaio/taiga-back/issues/1122
