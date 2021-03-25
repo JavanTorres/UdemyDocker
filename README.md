@@ -17,3 +17,9 @@ docker container exec -it node-mongo-compose_db_1 mongo
 Acessando os logs de um container, tipo um node rodando um app:
 
 docker logs 243967adc88b
+
+MAIOR DETALHAMENTO A RESPEITO DE VOLUMES:
+
+https://youtu.be/StQYXkFgeeA?t=481
+
+https://spin.atomicobject.com/2019/07/11/docker-volumes-explained/

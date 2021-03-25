@@ -1,6 +1,6 @@
 # 53. Banco de dados
 
-Criar uo banco de dados, criar uma pasta chamda 'email-worker-compose' e dentro dela um docker-compose.yml e após isso na raiz da pasta rodar 
+Criar o banco de dados, criar uma pasta chamda 'email-worker-compose' e dentro dela um docker-compose.yml e após isso na raiz da pasta rodar 
 'docker-compose up -d' para subir em background e depois rodar 'docker-compose ps' para ver o processo rodando.
 
 Rodar para entrar no processo e listar os bancos de dados:
@@ -41,9 +41,36 @@ Tive problemas ao criar o BD, pois quando subi o serviço o init do BD não esta
                             section of the Compose file and anonymous volumes
                             attached to containers.
 
+Rodar 'docker-compose exec db psql -U postgres -f /scripts/check.sql' vai retornar algo como:
+
+List of databases
+     Name     |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+--------------+----------+----------+------------+------------+-----------------------
+ email_sender | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres     | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0    | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+              |          |          |            |            | postgres=CTc/postgres
+ template1    | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+              |          |          |            |            | postgres=CTc/postgres
+(4 rows)
+
+You are now connected to database "email_sender" as user "postgres".
+                                    Table "public.emails"
+  Column  |            Type             |                      Modifiers                      
+----------+-----------------------------+-----------------------------------------------------
+ id       | integer                     | not null default nextval('emails_id_seq'::regclass)
+ data     | timestamp without time zone | not null default now()
+ assunto  | character varying(100)      | not null
+ mensagem | character varying(250)      | not null
 
 
-https://youtu.be/StQYXkFgeeA?t=481
+# 55. Front-End.
+   Voltar ao compose.
+   Criar uma pasta web, dentro dela criar o index.html.
 
+   Rodar 'docker-compose ps' para ver se o compose do worker está rodando se estiver parar com 'docker-compose down' e subir novamente.
 
-https://spin.atomicobject.com/2019/07/11/docker-volumes-explained/
+   Chamar http://localhost:8080/
+
+   Podemos ver  os logs com 'docker-compose logs -f -t'
+
