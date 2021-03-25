@@ -74,3 +74,6 @@ You are now connected to database "email_sender" as user "postgres".
 
    Podemos ver  os logs com 'docker-compose logs -f -t'
 
+# 56. Filas (app).
+   Criar a pasta app e os arquivos app.sh e sender.py.
+   Voltar ao compose.
