@@ -23,3 +23,6 @@ MAIOR DETALHAMENTO A RESPEITO DE VOLUMES:
 https://youtu.be/StQYXkFgeeA?t=481
 
 https://spin.atomicobject.com/2019/07/11/docker-volumes-explained/
+
+COMO ESCALAR/ESCALABIDADE:
+ Curso-9-Projeto-para-Envio-de-E-mails-com-Workers.txt > # 60. Múltiplas instâncias.

@@ -129,3 +129,63 @@ Voltar para o compose e segregar as redes criando os networks:
   Para viasualizar se foi gravado no BD.
 
   # 59. Workers
+
+  Vamos tentar simular um sila usando o Redis.
+
+  No compose cirar um network chamado 'fila'. e colocar esse network no serviço app.
+  O colocar no app um depends_on queue, queue é um serviço que será criado agora.
+  Queue será criado baseado no Redis 3.2 e vai pertencer a rede 'fila'.
+  Criar um serviço chamado worker que também será feito em Python assim o app.
+  Em worker criar o bind volume, command que vai rodar um bash, botar no network fila e dependência de queue.
+  Na pasta do app no arquivo do bash aidionar o Redis, ajusta o código python do app.
+  Criar uma pasta worker com um arquivo app.sh, criar worker.py.
+
+  docker-compose down
+  docker-compose up -d
+
+  docker-compose logs -f -t
+
+  Chamar: http://localhost:MINHAPORTA/ e fazer um teste.
+
+# 60. Múltiplas instâncias
+
+Vamos escalar o serviço worker.
+
+Primeiro vamos criar um imagem customizada do Python com um Dockerfile (dentro da pasta worker).
+No compose vamos alterar para o worker usar a imagem customizada 'build:', ainda no worker colocar 'command: worker.py'.
+Ajustar o worker.py botando uma mensagem pra ver quantos serviços estão subindo.
+
+docker-compose down
+
+*** Aqui vem o "pulo do gato" para escalar, mas infelizmente é uma escalabilidade fake ao meu ver, pois não é dinâmica.
+
+docker-compose up -d --scale worker=3
+
+"Escalou" criando 3 serviços worker.
+
+docker-compose logs -f -t worker
+
+# 61. Boas práticas — Variáveis de ambiente
+
+Alterar o serder.py para suportar variáveis de ambiente.
+
+No compose dentro do serviço app criar 'environment:' e configurar a(s) variáveis.
+
+docker-compose down
+
+docker-compose up -d --scale worker=3
+
+docker-compose logs -f -t
+
+'docker-compose exec db psql -U postgres -d email_sender -c 'select * from emails''
+
+No código python ficou "db_name = os.getenv('DB_NAME', 'sender')", sender é um nome errado para o BD, mas só é utilizado como padrão se não tiver variável de ambiente.
+
+# 62. Override
+
+Resumidamente se você tiver um arquivo 'docker-compose.override.yml' na raiz junto ao compose e der um compose up padrão, tudo que o arquivo override tiver ele vai sobrescrever de configuração no compose normal.
+Mas eu posso ter um compose para sobrescrever configurações em determinadas situações, por exemplo:
+
+"docker-compose.prod.yml"
+Ao invés de rodar 'docker-compose up -d' e já pegar as de um arquivo override por padrão, basta rodar assim:
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d

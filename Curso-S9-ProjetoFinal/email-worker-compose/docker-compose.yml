@@ -55,3 +55,26 @@ services:
     networks:
       - banco
       - web
+      - fila
+    depends_on:
+      - db
+      - queue
+    # Variável de ambiente colocada errada de propósito para ser sobrescrita pelo 
+    environment:
+      - DB_NAME=kakakaak_sender
+  queue:
+    image: redis:3.2
+    networks:
+      - fila
+  worker:
+    # Ele vai procurar uma pasta chamada worker, dentro dessa pasta vai procurar um Dockerfile e usar essa imagem customizada para gerar o serviço.
+    build: worker
+    volumes:
+      # Worker
+      - ./worker:/worker
+    working_dir: /worker
+    command: worker.py
+    networks:
+      - fila
+    depends_on:
+      - queue
