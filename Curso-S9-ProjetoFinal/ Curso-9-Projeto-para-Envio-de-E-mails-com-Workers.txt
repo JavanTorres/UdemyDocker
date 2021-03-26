@@ -82,3 +82,10 @@ You are now connected to database "email_sender" as user "postgres".
    docker-compose up
 
    https://github.com/taigaio/taiga-back/issues/1122
+
+Ver que a chamda ao Backend funciona.
+
+# 56. Proxy reverso.
+
+Criar uma pasta nginx e dentro dela um arquivo 'default.config'
+
