@@ -89,3 +89,43 @@ Ver que a chamda ao Backend funciona.
 
 Criar uma pasta nginx e dentro dela um arquivo 'default.config'
 
+Tirar a configuração de abertura de porta do service 'app' que está no compose.
+
+Alterar a action do arquivo HTML para http://localhost:MINHAPORTA/api
+
+docker-compose down
+
+docker-compose down
+
+Chamar: http://localhost:MINHAPORTA/
+
+# 58. Redes.
+
+Voltar para o compose e segregar as redes criando os networks:
+
+  # Rede que será exclusiva do BD
+  banco:
+  # Rede que será exclusiva do NGINX
+  web:
+  # Rede que será exclusiva
+
+  Dizer a que rede depende cada serviço networks(em cada serviço).
+
+  E apontandos as dependências 'depends_on'.
+
+   No arquivio 'app.sh' adicionar dependência para acesso so postgres e alterar o arquivo python.
+
+   docker-compose down
+
+   docker-compose up -d
+
+   docker-compose logs -f -t
+
+
+   Chamar: http://localhost:MINHAPORTA/ e fazer a gravação e depois:
+
+  'docker-compose exec db psql -U postgres -d email_sender -c 'select * from emails''
+
+  Para viasualizar se foi gravado no BD.
+
+  # 59. Workers

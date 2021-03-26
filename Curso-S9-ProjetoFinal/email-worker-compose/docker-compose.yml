@@ -1,7 +1,15 @@
 version: "3"
 volumes:
-  # Como não tem nada referencia a pasta raiz.
+  # Named volume
   dados:
+# Redes segregadas
+networks:
+  # Rede que será exclusiva do BD
+  banco:
+  # Rede que será exclusiva do NGINX
+  web:
+  # Rede que será exclusiva
+  fila:
 services:
   db:
     image: postgres:9.6
@@ -14,6 +22,9 @@ services:
       - ./scripts:/scripts
       # Este padrão de inicilização está na documentação oficial do postgres
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    #Dizendo que este serviço pertence apenas a rede 'banco' e não acesso direto as outras redes (precisa consigurar).
+    networks:
+      - banco
   frontend:
     image: nginx:1.13
     volumes:
@@ -23,6 +34,12 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 85:80
+    #Dizendo que este serviço pertence apenas a rede 'web' e não acesso direto as outras redes (precisa consigurar).
+    networks:
+      - web
+    # Serve  dizer a(s) dependência(s) que precisam subir antes do serviço, se fizer um 'docker-compose up NOMEDOSERVICO, ele vai subir as dependências também'
+    depends_on:
+      - app
   app:
     image: python:3.6
     volumes:
@@ -33,3 +50,8 @@ services:
     #Essa configuração de porta era necessário quanda não se tinha um proxy reverso confidurado no bo arquivo 'default.conf'
     #ports:
     #  - 8090:8080
+
+    #Dizendo que este serviço pertence as redes 'banco' e 'web' e não acesso direto as outras redes (precisa consigurar).
+    networks:
+      - banco
+      - web
