@@ -1,5 +1,7 @@
 https://phoenixnap.com/kb/remove-docker-images-containers-networks-volumes
 
+docker-compose down
+
 # Containers
 Lembrando que 'ps' poderia ser substituído por 'ls'.
 
